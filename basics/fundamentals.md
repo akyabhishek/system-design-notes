@@ -102,9 +102,9 @@ Storing **frequently accessed data in fast memory** (e.g., Redis) to reduce late
 
 ## Latency vs Throughput
 
-| Property   | Definition                                      | Example                   |
-| ---------- | ----------------------------------------------- | ------------------------- |
-| Latency    | Time taken to process **one request**           | 200ms to load a page      |
+| Property   | Definition                                      | Example                    |
+| ---------- | ----------------------------------------------- | -------------------------- |
+| Latency    | Time taken to process **one request**           | 200ms to load a page       |
 | Throughput | Number of requests handled **per unit of time** | 10,000 requests per second |
 
 > Low latency + high throughput = ideal system.
@@ -155,13 +155,13 @@ An **async communication** mechanism where producers send messages to a queue an
 
 ## Database — SQL vs NoSQL
 
-| Property    | SQL (Relational)         | NoSQL                          |
-| ----------- | ------------------------ | ------------------------------ |
-| Structure   | Tables with fixed schema | Flexible schema (JSON, etc.)   |
-| Scaling     | Vertical                 | Horizontal                     |
-| Consistency | Strong                   | Eventual (usually)             |
-| Use Case    | Banking, ERP             | Social media, real-time apps   |
-| Examples    | PostgreSQL, MySQL        | MongoDB, Cassandra, DynamoDB   |
+| Property    | SQL (Relational)         | NoSQL                        |
+| ----------- | ------------------------ | ---------------------------- |
+| Structure   | Tables with fixed schema | Flexible schema (JSON, etc.) |
+| Scaling     | Vertical                 | Horizontal                   |
+| Consistency | Strong                   | Eventual (usually)           |
+| Use Case    | Banking, ERP             | Social media, real-time apps |
+| Examples    | PostgreSQL, MySQL        | MongoDB, Cassandra, DynamoDB |
 
 ---
 
