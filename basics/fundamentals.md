@@ -83,3 +83,96 @@ Records discrete events (errors, requests, state changes) as **timestamped text*
 ## Extensible
 
 Designed so **new functionality can be added without modifying existing code**.
+
+---
+
+## Caching
+
+Storing **frequently accessed data in fast memory** (e.g., Redis) to reduce latency and offload the database.
+
+> **e.g.** Storing a user's profile in Redis so every request doesn't hit the DB.
+
+**When to Use**
+
+- Read-heavy workloads
+- Data that doesn't change frequently
+- Reducing repeated expensive computations or DB queries
+
+---
+
+## Latency vs Throughput
+
+| Property   | Definition                                      | Example                   |
+| ---------- | ----------------------------------------------- | ------------------------- |
+| Latency    | Time taken to process **one request**           | 200ms to load a page      |
+| Throughput | Number of requests handled **per unit of time** | 10,000 requests per second |
+
+> Low latency + high throughput = ideal system.
+
+---
+
+## Fault Tolerance
+
+The ability of a system to **continue operating correctly** even when some components fail.
+
+> Different from Resilience — Fault Tolerance is about **preventing disruption**, Resilience is about **recovering from it**.
+
+**Techniques**
+
+- Redundancy
+- Replication
+- Failover mechanisms
+
+---
+
+## CDN (Content Delivery Network)
+
+A network of **geographically distributed servers** that serve static content (images, JS, CSS, videos) from locations closest to the user.
+
+> **e.g.** A user in India getting assets from a Mumbai edge server instead of a US origin server.
+
+**Benefits**
+
+- Reduced latency
+- Lower load on origin server
+- Better availability
+
+---
+
+## Message Queue
+
+An **async communication** mechanism where producers send messages to a queue and consumers process them independently.
+
+> **e.g.** Kafka, RabbitMQ, Amazon SQS
+
+**Benefits**
+
+- Decouples services
+- Handles traffic spikes (acts as a buffer)
+- Enables retry on failure
+
+---
+
+## Database — SQL vs NoSQL
+
+| Property    | SQL (Relational)         | NoSQL                          |
+| ----------- | ------------------------ | ------------------------------ |
+| Structure   | Tables with fixed schema | Flexible schema (JSON, etc.)   |
+| Scaling     | Vertical                 | Horizontal                     |
+| Consistency | Strong                   | Eventual (usually)             |
+| Use Case    | Banking, ERP             | Social media, real-time apps   |
+| Examples    | PostgreSQL, MySQL        | MongoDB, Cassandra, DynamoDB   |
+
+---
+
+## Rate Limiting
+
+Controlling the **number of requests** a client can make within a given time window to protect the system from abuse or overload.
+
+> **e.g.** Max 100 API requests per minute per user.
+
+**Algorithms**
+
+- Token Bucket
+- Sliding Window
+- Fixed Window Counter
