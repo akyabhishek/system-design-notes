@@ -16,8 +16,8 @@ S1   S2    S3
 
 ---
 
-![Without Load Balancing](https://media.geeksforgeeks.org/wp-content/uploads/20241103190358904939/without-load-balancing.webp)
-![With Load Balancing](https://media.geeksforgeeks.org/wp-content/uploads/20241103190433238127/with-load-balancing.webp)
+![Without Load Balancing](../assets/without-load-balancing.webp)
+![With Load Balancing](../assets/with-load-balancing.webp)
 
 ---
 
