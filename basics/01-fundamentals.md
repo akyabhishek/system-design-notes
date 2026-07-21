@@ -176,3 +176,18 @@ Controlling the **number of requests** a client can make within a given time win
 - Token Bucket
 - Sliding Window
 - Fixed Window Counter
+
+
+## Resiliency
+
+The ability of a **system to withstand failures and recover quickly** while continuing to serve users.
+
+> **e.g.** If one application server crashes, traffic is automatically routed to another healthy server.
+
+---
+
+## Idempotency
+
+Ensures that **repeating the same request multiple times has the same effect as executing it once**.
+
+> **e.g.** Retrying a payment request with the same **Idempotency-Key** charges the customer only once.
