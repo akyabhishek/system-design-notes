@@ -2,12 +2,12 @@
 
 ## 1. Why Caching?
 
--   Reduces latency
--   Reduces database load
--   Improves throughput
--   Handles traffic spikes
+- Reduces latency
+- Reduces database load
+- Improves throughput
+- Handles traffic spikes
 
-------------------------------------------------------------------------
+---
 
 ## 2. Cache Flow
 
@@ -26,42 +26,43 @@
                       |
                  Return Data
 
-------------------------------------------------------------------------
+---
 
 ## 3. Types of Cache
 
 ### Browser Cache
 
--   CSS
--   JS
--   Images
+- CSS
+- JS
+- Images
 
 ### CDN Cache
 
--   Static assets
--   Images
--   Videos
--   Thumbnails
+- Static assets
+- Images
+- Videos
+- Thumbnails
 
 ### Application (Local) Cache
 
--   Stored inside application memory (JVM)
--   Examples:
-    -   HashMap
-    -   ConcurrentHashMap
-    -   Caffeine
--   Fastest
--   Not shared across servers
+- Stored inside application memory (JVM)
+- Examples:
+  - HashMap
+  - ConcurrentHashMap
+  - Caffeine
+- Fastest
+- Not shared across servers
 
 ### Global Cache
 
--   Shared by all application instances
--   Usually Redis or Memcached
--   One logical cache for entire application
+- Shared by all application instances
+- Usually Redis or Memcached
+- One logical cache for entire application
 
 ```{=html}
 <!-- -->
 ```
+
     App1
      \
       \
@@ -72,32 +73,35 @@
 
 ### Distributed Cache
 
--   Cache spread across multiple cache nodes
--   Data partitioned using hashing (e.g. consistent hashing)
--   Scales horizontally
+- Cache spread across multiple cache nodes
+- Data partitioned using hashing (e.g. consistent hashing)
+- Scales horizontally
 
 ```{=html}
 <!-- -->
 ```
+
     Redis Cluster
 
     Node1
     Node2
     Node3
 
-------------------------------------------------------------------------
+---
 
 ## 4. Local vs Global vs Distributed
 
-  Feature          Local     Global      Distributed
-  ---------------- --------- ----------- -------------
-  Shared           ❌        ✅          ✅
-  Speed            Fastest   Very Fast   Very Fast
-  Network Call     No        Yes         Yes
-  Scalable         ❌        Limited     ✅
-  Duplicate Data   Yes       No          No
+Feature Local Global Distributed
 
-------------------------------------------------------------------------
+---
+
+Shared ❌ ✅ ✅
+Speed Fastest Very Fast Very Fast
+Network Call No Yes Yes
+Scalable ❌ Limited ✅
+Duplicate Data Yes No No
+
+---
 
 ## 5. Cache Patterns
 
@@ -113,7 +117,7 @@ Pros: - Easy - Only frequently used data cached
 
 Cons: - First request is slower
 
-------------------------------------------------------------------------
+---
 
 ### Read Through
 
@@ -121,27 +125,27 @@ Application -\> Cache -\> Database
 
 Cache fetches missing data automatically.
 
-------------------------------------------------------------------------
+---
 
 ### Write Through
 
 Application ↓ Cache ↓ Database
 
--   Cache and DB updated together
--   Strong consistency
--   Higher write latency
+- Cache and DB updated together
+- Strong consistency
+- Higher write latency
 
-------------------------------------------------------------------------
+---
 
 ### Write Back (Write Behind)
 
 Application ↓ Cache ↓ Return Success ↓ Database updated later
 
--   Fast writes
--   Eventual consistency
--   Risk of data loss if cache fails
+- Fast writes
+- Eventual consistency
+- Risk of data loss if cache fails
 
-------------------------------------------------------------------------
+---
 
 ### Write Around
 
@@ -149,18 +153,18 @@ Application ↓ Database
 
 Cache populated only when data is read later.
 
-------------------------------------------------------------------------
+---
 
 ## 6. TTL (Time To Live)
 
--   Expiration time for cache entries
--   Prevents stale data
+- Expiration time for cache entries
+- Prevents stale data
 
 Example:
 
     EXPIRE user:101 300
 
-------------------------------------------------------------------------
+---
 
 ## 7. Cache Eviction
 
@@ -180,7 +184,7 @@ First In First Out
 
 Random eviction
 
-------------------------------------------------------------------------
+---
 
 ## 8. Cache Invalidation
 
@@ -189,7 +193,7 @@ Update DB → Cache becomes stale
 Solutions: - Delete cache after update - Update cache immediately -
 TTL - Event-driven invalidation (Kafka/RabbitMQ)
 
-------------------------------------------------------------------------
+---
 
 ## 9. Common Problems
 
@@ -218,11 +222,11 @@ One key gets huge traffic.
 
 Solutions: - Replication - Sharding - Rate limiting
 
-------------------------------------------------------------------------
+---
 
 ## 10. Redis Commands
 
-``` bash
+```bash
 SET key value
 GET key
 DEL key
@@ -231,9 +235,11 @@ EXPIRE key 300
 
 Time Complexity: - GET → O(1) - SET → O(1) - DEL → O(1)
 
-------------------------------------------------------------------------
+---
 
 ## 11. What to Cache?
+
+✅ Data accessed frequently but updated infrequently
 
 ✅ User profiles
 
@@ -251,18 +257,18 @@ Time Complexity: - GET → O(1) - SET → O(1) - DEL → O(1)
 
 ❌ Sensitive data without proper security
 
-------------------------------------------------------------------------
+---
 
 ## 12. Interview Answers
 
 ### Why Redis?
 
--   In-memory
--   O(1) operations
--   Extremely low latency
--   Supports TTL
--   Rich data structures
--   Horizontal scaling
+- In-memory
+- O(1) operations
+- Extremely low latency
+- Supports TTL
+- Rich data structures
+- Horizontal scaling
 
 ### Most Common Pattern
 
@@ -270,25 +276,25 @@ Time Complexity: - GET → O(1) - SET → O(1) - DEL → O(1)
 
 ### Difference Between Global and Distributed Cache
 
--   Global Cache: Shared cache used by all applications.
--   Distributed Cache: Cache itself is partitioned across multiple cache
-    servers.
+- Global Cache: Shared cache used by all applications.
+- Distributed Cache: Cache itself is partitioned across multiple cache
+  servers.
 
 > In practice, a Redis Cluster is both **global (shared)** and
 > **distributed (partitioned)**.
 
-------------------------------------------------------------------------
+---
 
 ## 13. Quick Revision (30 Seconds)
 
--   Cache = Faster storage layer
--   Cache Hit = Data found
--   Cache Miss = Read DB + Update Cache
--   Local Cache = Inside app
--   Global Cache = Shared Redis
--   Distributed Cache = Redis Cluster
--   Cache Aside = Most common
--   TTL = Expiration
--   LRU = Most popular eviction
--   Redis = O(1) GET/SET
--   Watch for Stampede, Penetration, Avalanche, Hot Keys
+- Cache = Faster storage layer
+- Cache Hit = Data found
+- Cache Miss = Read DB + Update Cache
+- Local Cache = Inside app
+- Global Cache = Shared Redis
+- Distributed Cache = Redis Cluster
+- Cache Aside = Most common
+- TTL = Expiration
+- LRU = Most popular eviction
+- Redis = O(1) GET/SET
+- Watch for Stampede, Penetration, Avalanche, Hot Keys
