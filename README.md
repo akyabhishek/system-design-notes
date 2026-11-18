@@ -12,3 +12,9 @@ A personal reference for core system design concepts, patterns, and trade-offs â
 4. [Load Balancing](basics/04-load-balancing.md)
 5. [Microservice Architecture](basics/05-microservice-architecture.md)
 6. [Consistent Hashing](basics/06-consistent-hashing.md)
+
+---
+
+## Kubernetes
+
+1. [Deployment Strategies](kubernetes/01-deployment-strategies.md)
